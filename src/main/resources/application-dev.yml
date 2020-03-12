@@ -1,0 +1,20 @@
+server:
+  port: 8683
+spring:
+  profiles: dev
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/springboot_local?useunicode=true&characterEncoding=utf8
+    username: root
+    password: root123456
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.example.demo.pojo
+
+logging:
+  config: classpath:logback_dev.xml
+  level:
+    com:
+      example:
+        demo:
+          mapper: debug
