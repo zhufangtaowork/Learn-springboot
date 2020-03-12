@@ -1,7 +1,10 @@
 package com.example.demo.controller;
 
+import com.example.demo.common.Result;
+import com.example.demo.common.ResultCode;
 import com.example.demo.pojo.User;
 import com.example.demo.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,6 +21,7 @@ import java.util.Map;
  * 创 建 人：ZhuFangTao
  * @author fangtaozhu
  */
+@Slf4j
 @RestController
 @RequestMapping("spring/v1")
 public class UserController {
@@ -29,13 +33,12 @@ public class UserController {
     }
 
     @RequestMapping("login")
-    public Map<String,Object> login(@RequestParam String name,String password){
+    public Result login(@RequestParam String name, String password){
+        Result result = new Result();
         User user = userService.findUser(name,password);
-        HashMap<String, Object> paramsMap = new HashMap<>(16);
         if (user == null){
-            paramsMap.put("msg","登陆失败!");
+           return result.setMsgCode(ResultCode.REQUEST_ERROR);
         }
-        paramsMap.put("msg","登陆成功!");
-        return paramsMap;
+        return result.setMsgCode(ResultCode.LOGIN_SUCCESS);
     }
 }
