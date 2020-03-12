@@ -13,18 +13,18 @@ import java.util.Map;
 /**
  * 项目名称：springboot_demo
  * 类 名 称：DemoIndexController
- * 类 描 述：TODO
+ * 类 描 述：UserController
  * 创建时间：2020/3/11 4:16 下午
  * 创 建 人：ZhuFangTao
  * @author fangtaozhu
  */
 @RestController
 @RequestMapping("spring/v1")
-public class DemoIndexController {
+public class UserController {
 
     private final UserService userService;
 
-    public DemoIndexController(UserService userService) {
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 
