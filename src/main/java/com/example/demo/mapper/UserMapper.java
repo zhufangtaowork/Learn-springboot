@@ -20,4 +20,14 @@ public interface UserMapper {
      * @Description 查询用户是否存在
      **/
     User findUser(@Param("name") String name, @Param("password") String password);
+
+    /**
+     * @Author ZhuFangTao
+     * @MethodName addUser
+     * @Description 添加用户
+     * @Date 2:29 下午 2020/3/13
+     * @Param [name, encryptPassword]
+     * @return int
+     **/
+    int addUser(String name, String encryptPassword);
 }

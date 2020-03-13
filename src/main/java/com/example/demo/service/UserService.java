@@ -20,4 +20,15 @@ public interface UserService {
      * @return com.example.demo.pojo.User
      **/
     User findUser(String name, String password);
+
+    /**
+     * @Author ZhuFangTao
+     * @MethodName addUser
+     * @Description 用户注册
+     * @Date 2:28 下午 2020/3/13
+     * @Param [name, encryptPassword]
+     * @return boolean
+     **/
+    boolean addUser(String name, String encryptPassword);
+
 }

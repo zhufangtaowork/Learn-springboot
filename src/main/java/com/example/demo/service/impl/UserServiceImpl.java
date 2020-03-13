@@ -28,4 +28,10 @@ public class UserServiceImpl implements UserService {
         }
         return user;
     }
+
+    @Override
+    public boolean addUser(String name, String encryptPassword) {
+        int i = userMapper.addUser(name,encryptPassword);
+        return i>0;
+    }
 }
