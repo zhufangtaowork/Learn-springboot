@@ -10,7 +10,7 @@ package com.example.demo.common;
  */
 public class Constant {
     /**
-     * token过期时间
+     * token过期时间 一分钟
      */
     public static final long EXP_TIME = 60*1000;
     /**
