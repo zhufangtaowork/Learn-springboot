@@ -12,7 +12,7 @@ public class Constant {
     /**
      * token过期时间
      */
-    public static final long EXP_Time = 60*1000;
+    public static final long EXP_TIME = 60*1000;
     /**
      * 加密密码
      */
