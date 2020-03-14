@@ -42,6 +42,9 @@ public class UserController {
         if (user == null){
             return result.setMsgCode(ResultCode.REQUEST_ERROR);
         }
+
+
+
         String token = new JwtUtil().createJWT(user.getId().toString(), JSON.toJSONString(user), Constant.EXP_TIME);
         result.setData(token);
         result.setCode(ResultCode.LOGIN_SUCCESS);
