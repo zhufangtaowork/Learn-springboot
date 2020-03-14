@@ -36,6 +36,7 @@ public class UserController {
     @ApiOperation(value = "用户登录")
     @GetMapping(value = "login")
     public Result login(@RequestParam String name, String password) throws Exception {
+
         Result result = new Result();
         User user = userService.findUser(name,PasswordUtil.encrypt(password, Constant.ENCRYPTION_PASSWORD, PasswordUtil.getStaticSalt()));
         if (user == null){
