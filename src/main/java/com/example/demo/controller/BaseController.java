@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
  * 创 建 人：ZhuFangTao
  * @author fangtaozhu
  */
-@RestController
+@Controller
 public class BaseController {
     @RequestMapping("/")
     public String jumpIndex(){
