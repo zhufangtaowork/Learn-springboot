@@ -4,6 +4,8 @@ import com.example.demo.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * 项目名称：springboot_demo
  * 类 名 称：UserMapper
@@ -30,4 +32,15 @@ public interface UserMapper {
      * @return int
      **/
     int addUser(String name, String encryptPassword);
+
+    /**
+     * @Author ZhuFangTao
+     * @MethodName findUsers
+     * @Description
+     * @Date 1:44 上午 2020/3/22
+     * @Param []
+     * @return java.util.List<com.example.demo.pojo.User>
+     *
+     * @param threadId*/
+    List<User> findUsers(@Param("threadId") int threadId);
 }

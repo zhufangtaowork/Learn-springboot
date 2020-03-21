@@ -1,5 +1,8 @@
 package com.example.demo.common;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 项目名称：springboot_demo
  * 类 名 称：Constant
@@ -9,6 +12,7 @@ package com.example.demo.common;
  * @author fangtaozhu
  */
 public class Constant {
+    public static final int THREAD_NUM = 2;
     /**
      * token过期时间 一分钟
      */
@@ -17,4 +21,6 @@ public class Constant {
      * 加密密码
      */
     public static final String ENCRYPTION_PASSWORD = "root_password_123456";
+
+    public static final Map<Integer,String> USER_MAP = new HashMap<>();
 }

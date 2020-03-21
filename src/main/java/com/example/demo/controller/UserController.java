@@ -15,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 
 /**
  * 项目名称：springboot_demo
@@ -41,13 +42,17 @@ public class UserController {
     @GetMapping(value = "login")
     public Result login(@RequestParam String name, String password) throws Exception {
         Result result = new Result();
+        HashMap<String, Object> map = new HashMap<>(16);
         User user = userService.findUser(name, PasswordUtil.encrypt(password, Constant.ENCRYPTION_PASSWORD, PasswordUtil.getStaticSalt()));
         if (user == null) {
             return result.setMsgCode(ResultCode.REQUEST_ERROR);
         }
+        String s = Constant.USER_MAP.get(user.getId());
         String token = new JwtUtil().createJWT(user.getId().toString(), JSON.toJSONString(user), Constant.EXP_TIME);
-        result.setData(token);
-        result.setCode(ResultCode.LOGIN_SUCCESS);
+        map.put("token",token);
+        map.put("userName",s);
+        result.setData(map);
+        result.setMsgCode(ResultCode.LOGIN_SUCCESS);
         return result;
     }
 

@@ -2,6 +2,8 @@ package com.example.demo.service;
 
 import com.example.demo.pojo.User;
 
+import java.util.List;
+
 /**
  * 项目名称：springboot_demo
  * 类 名 称：UserService
@@ -30,5 +32,14 @@ public interface UserService {
      * @return boolean
      **/
     boolean addUser(String name, String encryptPassword);
-
+    /**
+     * @Author ZhuFangTao 
+     * @MethodName findUsers
+     * @Description 
+     * @Date 2:25 上午 2020/3/22
+     * @Param [threadId]
+     * @return java.util.List<com.example.demo.pojo.User>
+     *
+     * @param threadId*/
+    List<User> findUsers(int threadId);
 }

@@ -18,4 +18,13 @@
     <select id="findUser" resultType="com.example.demo.pojo.User">
         select * from s_local where name = #{name} and password = #{password}
     </select>
+    <select id="findUsers" resultType="com.example.demo.pojo.User">
+        select * from s_local where status = 1
+        <if test="threadId%2==1">
+            and id%2=1
+        </if>
+        <if test="threadId%2==0">
+            and id%2=0
+        </if>
+    </select>
 </mapper>
