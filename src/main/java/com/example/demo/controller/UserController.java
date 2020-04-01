@@ -8,6 +8,8 @@ import com.example.demo.pojo.User;
 import com.example.demo.service.UserService;
 import com.example.demo.untils.JwtUtil;
 import com.example.demo.untils.PasswordUtil;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import io.jsonwebtoken.Claims;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -80,4 +82,12 @@ public class UserController {
         }
         return "您现在的位置是页面A";
     }
+
+    @ApiOperation(value = "查询用户列表")
+    @PostMapping(value = "users")
+    public PageInfo<User> findAllUsers() {
+        PageInfo<User>  userPageInfo = PageHelper.startPage(1,3).doSelectPageInfo(()->userService.findAllUsers());
+        return userPageInfo;
+    }
+
 }

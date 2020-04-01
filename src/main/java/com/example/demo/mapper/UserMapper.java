@@ -43,4 +43,7 @@ public interface UserMapper {
      *
      * @param threadId*/
     List<User> findUsers(@Param("threadId") int threadId);
+
+    List<User> findAllUsers();
+
 }

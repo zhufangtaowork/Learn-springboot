@@ -42,4 +42,15 @@ public interface UserService {
      *
      * @param threadId*/
     List<User> findUsers(int threadId);
+
+    /**
+     * @Author ZhuFangTao
+     * @MethodName findAllUsers
+     * @Description
+     * @Date 11:06 上午 2020/4/1
+     * @Param []
+     * @return java.util.List<com.example.demo.pojo.User>
+     **/
+    List<User> findAllUsers();
+
 }
