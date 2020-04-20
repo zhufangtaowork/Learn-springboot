@@ -10,17 +10,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
-/**
-15
- * redis配置类
-16
- * @author ZENG.XIAO.YAN
-17
- * @date   2018年6月6日
-18
- * 
-19
- */
+
 @Configuration
 public class RedisConfig {
 

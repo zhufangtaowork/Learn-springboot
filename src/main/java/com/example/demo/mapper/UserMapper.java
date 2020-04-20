@@ -41,7 +41,8 @@ public interface UserMapper {
      * @Param []
      * @return java.util.List<com.example.demo.pojo.User>
      *
-     * @param threadId*/
+     * @param threadId
+     **/
     List<User> findUsers(@Param("threadId") int threadId);
 
     List<User> findAllUsers();
