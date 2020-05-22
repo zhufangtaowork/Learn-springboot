@@ -7,6 +7,7 @@ import org.apache.commons.collections.CollectionUtils;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 项目名称：springboot_demo
@@ -49,5 +50,11 @@ public class UserServiceImpl implements UserService {
     public List<User> findAllUsers() {
         List<User> userList = userMapper.findAllUsers();
         return userList;
+    }
+
+    @Override
+    public boolean addUsers(Map<String, Object> params) {
+        Integer i = userMapper.addUsers(params);
+        return i>0;
     }
 }

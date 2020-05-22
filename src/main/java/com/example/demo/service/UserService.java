@@ -3,6 +3,7 @@ package com.example.demo.service;
 import com.example.demo.pojo.User;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 项目名称：springboot_demo
@@ -53,4 +54,11 @@ public interface UserService {
      **/
     List<User> findAllUsers();
 
+    /**
+     * @Author ZhuFangTao
+     * @MethodName addUsers
+     * @Description 批量插入对象
+     * @Date 12:34 上午 2020/5/23
+     */
+    boolean addUsers(Map<String, Object> params);
 }

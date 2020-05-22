@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 项目名称：springboot_demo
@@ -47,4 +48,5 @@ public interface UserMapper {
 
     List<User> findAllUsers();
 
+    Integer addUsers(Map<String, Object> params);
 }

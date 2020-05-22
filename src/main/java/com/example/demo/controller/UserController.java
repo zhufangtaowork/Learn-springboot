@@ -13,11 +13,13 @@ import com.github.pagehelper.PageInfo;
 import io.jsonwebtoken.Claims;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 项目名称：springboot_demo
@@ -29,7 +31,7 @@ import java.util.HashMap;
  * @author fangtaozhu
  */
 @Slf4j
-@Api(tags = {"用户接口"})
+@Api(value = "用户controller",tags = {"用户接口"})
 @RestController
 @RequestMapping("spring/v1")
 public class UserController {
@@ -85,9 +87,19 @@ public class UserController {
 
     @ApiOperation(value = "查询用户列表")
     @PostMapping(value = "users")
-    public PageInfo<User> findAllUsers() {
-        PageInfo<User>  userPageInfo = PageHelper.startPage(1,3).doSelectPageInfo(()->userService.findAllUsers());
-        return userPageInfo;
+    public PageInfo<User> findAllUsers(
+            @ApiParam(value = "pageNum",name = "页码",required = false) @RequestParam Integer pageNum,
+            @ApiParam(value = "pageSize",name = "每页的条数",required = false) @RequestParam Integer pageSize
+            ) {
+        return PageHelper.startPage(pageNum, pageSize).doSelectPageInfo(userService::findAllUsers);
+    }
+
+    @ApiOperation(value = "添加用户")
+    @PostMapping(value = "add/users")
+    public Result addUsers(@ApiParam(value = "user",name = "用户",required = false) @RequestBody Map<String,Object> params) {
+        Result result = new Result();
+        boolean res = userService.addUsers(params);
+        return result;
     }
 
 }

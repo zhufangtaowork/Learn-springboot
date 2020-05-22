@@ -15,6 +15,15 @@
         now()
         )
     </insert>
+    <insert id="addUsers">
+        INSERT INTO s_local
+        (name,password,create_time,
+        update_time)
+        VALUES
+        <foreach collection ="userList" index="index" item="item" separator =",">
+            (#{item.name},#{item.password},now(),now())
+        </foreach >
+    </insert>
     <select id="findUser" resultType="com.example.demo.pojo.User">
         select * from s_local where name = #{name} and password = #{password}
     </select>

@@ -31,3 +31,5 @@ logging:
       example:
         demo:
           mapper: debug
+server:
+  port: 1888
