@@ -28,8 +28,8 @@ import java.util.Map;
 @Slf4j
 @Service("UserServiceImpl")
 public class UserServiceImpl implements UserService {
-    private static final String xls = "^.+\\.(?i)(xls)$";
-    private static final String xlsx = "^.+\\.(?i)(xlsx)$";
+    private static final String XLS = "^.+\\.(?i)(xls)$";
+    private static final String XLS_X = "^.+\\.(?i)(xlsx)$";
 
     @Resource
     private UserMapper userMapper;
@@ -74,12 +74,12 @@ public class UserServiceImpl implements UserService {
     public boolean batchImport(String fileName, MultipartFile file) throws IOException {
         boolean notNull = false;
         List<User> userList = new ArrayList<User>();
-        if (!fileName.matches(xls) && !fileName.matches(xlsx)) {
+        if (!fileName.matches(XLS) && !fileName.matches(XLS_X)) {
             log.info("batchImport {}","上传文件格式不正确");
             return false;
         }
         boolean isExcel2003 = true;
-        if (fileName.matches(xlsx)) {
+        if (fileName.matches(XLS_X)) {
             isExcel2003 = false;
         }
         InputStream is = file.getInputStream();
