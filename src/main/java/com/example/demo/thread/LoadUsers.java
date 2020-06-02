@@ -4,9 +4,8 @@ import com.example.demo.common.Constant;
 import com.example.demo.pojo.User;
 import com.example.demo.service.UserService;
 import com.example.demo.untils.SpringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.commons.collections.CollectionUtils;
 
-import javax.annotation.Resource;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
@@ -18,7 +17,7 @@ import java.util.concurrent.CountDownLatch;
  *
  * @author：ZhuFangTao
  */
-public class LoadUsers implements Runnable{
+public class LoadUsers implements Runnable {
     private int threadId;
     private CountDownLatch latch;
 
@@ -30,20 +29,18 @@ public class LoadUsers implements Runnable{
     @Override
     public void run() {
         try {
-            UserService userService = (UserService)SpringUtils.getBean("UserServiceImpl");
+            UserService userService = (UserService) SpringUtils.getBean("UserServiceImpl");
             List<User> userList = userService.findUsers(threadId);
-            for (User u :
-                    userList) {
-                Constant.USER_MAP.put(u.getId(), u.getName());
+            if (CollectionUtils.isNotEmpty(userList)){
+                for (User u : userList) {
+                    Constant.USER_MAP.put(u.getId(), u.getName());
+                }
+                System.out.println("这是线程" + threadId + "查出来的：" + "userList = " + userList);
             }
-            System.out.println("这是线程："+threadId+"查出来的"+"userList = " + userList);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             latch.countDown();
         }
-
-
-
     }
 }

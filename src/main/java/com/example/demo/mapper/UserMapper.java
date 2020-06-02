@@ -49,4 +49,6 @@ public interface UserMapper {
     List<User> findAllUsers();
 
     Integer addUsers(Map<String, Object> params);
+
+    void addUserByObj(User u);
 }

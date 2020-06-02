@@ -16,6 +16,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -44,7 +45,10 @@ public class UserController {
 
     @ApiOperation(value = "用户登录")
     @GetMapping(value = "login")
-    public Result login(@RequestParam String name, String password) throws Exception {
+    public Result login(
+            @ApiParam(name = "用户姓名",value = "name")@RequestParam String name,
+            @ApiParam(name = "用户密码",value = "password")@RequestParam String password
+    ) throws Exception {
         Result result = new Result();
         HashMap<String, Object> map = new HashMap<>(16);
         User user = userService.findUser(name, PasswordUtil.encrypt(password, Constant.ENCRYPTION_PASSWORD, PasswordUtil.getStaticSalt()));
@@ -60,9 +64,12 @@ public class UserController {
         return result;
     }
 
-    @ApiOperation(value = "用户注册")
+    @ApiOperation(value = "用户注册",tags = {"用户注册方法"})
     @PutMapping(value = "userRegister")
-    public Result userRegister(@RequestParam String name, String password) {
+    public Result userRegister(
+            @ApiParam(name = "用户姓名",value = "name")@RequestParam String name,
+            @ApiParam(name = "用户密码",value = "password")@RequestParam String password
+    ) {
         Result result = new Result();
         String encryptPassword = PasswordUtil.encrypt(password, Constant.ENCRYPTION_PASSWORD, PasswordUtil.getStaticSalt());
         boolean blo = userService.addUser(name, encryptPassword);
@@ -102,4 +109,17 @@ public class UserController {
         return result;
     }
 
+    @ApiOperation(value = "excel上传")
+    @PostMapping(value = "upload/excel")
+    public boolean excelImport(@RequestParam(value="filename") MultipartFile file){
+        boolean flag = false;
+        String fileName = file.getOriginalFilename();
+        try {
+            flag = userService.batchImport(fileName, file);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return  flag;
+
+    }
 }
